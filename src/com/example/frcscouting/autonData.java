@@ -24,7 +24,7 @@ public class autonData extends Activity {
 		if(isBlue == true && isRed == false){
 			alliance.setText("Blue");
 		}
-		if(isRed == true && isBlue == false){
+		else{
 			alliance.setText("Red");
 		}
 

@@ -37,7 +37,7 @@ import android.content.Intent;
 import android.util.Log;
 
 public class Teleop extends Activity {
-
+	public static final int Bluetooth_Intent_ID=42;
 	private static final String PATH = null;
 	/** Called when the activity is first created. */
 
@@ -140,7 +140,7 @@ public class Teleop extends Activity {
 			}
 		}
 		File root = Environment.getExternalStorageDirectory();
-		File file = new File(root, "scouting temp data.xls");
+		File file = new File(root, "scouting.xls");
 		FileOutputStream os = null;
 		try { 
 
@@ -149,36 +149,7 @@ public class Teleop extends Activity {
 			Log.w("FileUtils", "Writing file" + file); 
 			Toast.makeText(getApplicationContext(), "File written to sdcard!",
 					Toast.LENGTH_LONG).show();
-			Intent intent = new Intent();
-			intent.setAction(Intent.ACTION_SEND);
-			intent.setType("image/*");
-			intent.setPackage("com.android.bluetooth");
-			intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file) );
-			//...
-			startActivity(intent);
-			/*FTPClient client = new FTPClient();
-			FileInputStream fis = null;
-			try {
-				client.connect("192.168.19.2");
-				client.login("user", "password");
-				// Create an InputStream of the file to be uploaded
-				String filename = "/sdcard/scouting temp.xls";
-				fis = new FileInputStream(filename);
-				// Store file on server and logout
-				client.storeFile(filename, fis);
-				client.logout();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					if (fis != null) {
-						fis.close();
-					}
-					client.disconnect();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}  */
+
 		} catch (IOException e) { 
 			Log.w("FileUtils", "Error writing " + file, e); 
 			Toast.makeText(getApplicationContext(), "Error writing file.",
@@ -189,14 +160,24 @@ public class Teleop extends Activity {
 					Toast.LENGTH_LONG).show();
 		} finally { 
 			try { 
+				Intent intent = new Intent();
+				intent.setAction(Intent.ACTION_SEND);
+				intent.setType("image/*");
+				intent.setPackage("com.android.bluetooth");
+				intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file) );
+				startActivityForResult(intent,Bluetooth_Intent_ID);
 				if (null != os) 
 					os.close(); 
-				Intent myIntent = new Intent(Teleop.this, MainActivity.class);
-				Teleop.this.startActivity(myIntent);
+
 			} catch (Exception ex) { 
 			} 
 		} 
 
 	}
-
+	public void onActivityResult (int requestCode, int resultCode, Intent data){
+		if(requestCode == Bluetooth_Intent_ID){
+			Intent myIntent = new Intent(Teleop.this, MainActivity.class);
+			Teleop.this.startActivity(myIntent);	
+		}
+	}
 }

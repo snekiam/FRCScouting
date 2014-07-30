@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class autonData extends Activity {
 
@@ -41,8 +42,8 @@ public class autonData extends Activity {
 		RadioButton lowHit = (RadioButton)findViewById(R.id.radio3);
 		RadioButton lowMiss = (RadioButton)findViewById(R.id.radio4);
 
-		int highGoalAuton;
-		int lowGoalAuton;
+		int highGoalAuton = 17;
+		int lowGoalAuton = 17;
 		if(highHot.isChecked())
 			highGoalAuton = 1; 
 		else if(highNormal.isChecked())
@@ -58,15 +59,22 @@ public class autonData extends Activity {
 			lowGoalAuton = 2;
 		else
 			lowGoalAuton = 0;
-		Intent il = new Intent(getApplicationContext(), Teleop.class);
-		il.putExtra("teamNumber",teamNumber);
-		il.putExtra("isRed",isRed);
-		il.putExtra("isBlue",isBlue);
-		il.putExtra("moves", moves);
-		il.putExtra("highGoalAuton", highGoalAuton);
-		il.putExtra("lowGoalAuton", lowGoalAuton);
-		startActivity(il);
 
+		if((highGoalAuton != 0 || lowGoalAuton != 0 )|| moves == false){
+			Intent il = new Intent(getApplicationContext(), Teleop.class);
+			il.putExtra("teamNumber",teamNumber);
+			il.putExtra("isRed",isRed);
+			il.putExtra("isBlue",isBlue);
+			il.putExtra("moves", moves);
+			il.putExtra("highGoalAuton", highGoalAuton);
+			il.putExtra("lowGoalAuton", lowGoalAuton);
+			startActivity(il);}	
+		else{
+			Toast.makeText(getApplicationContext(), "You failed to enter a value under one or more sections! Please check your input and try again.",
+					Toast.LENGTH_LONG).show();
+		}
 	}
 
 }
+
+

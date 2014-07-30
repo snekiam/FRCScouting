@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 /**
  * @author Miles
@@ -52,12 +53,16 @@ public class teamSelect extends Activity {
 		isRed = (red.isChecked());
 		isBlue = (blue.isChecked());
 		String teamNumber =  teamNumberInput.getText().toString();
-
-		Intent i = new Intent(getApplicationContext(), autonData.class);
-		i.putExtra("teamNumber",teamNumber);
-		i.putExtra("isRed",isRed);
-		i.putExtra("isBlue",isBlue);
-		startActivity(i);
+		if(teamNumber != null && (isRed ==true || isBlue == true)){
+			Intent i = new Intent(getApplicationContext(), autonData.class);
+			i.putExtra("teamNumber",teamNumber);
+			i.putExtra("isRed",isRed);
+			i.putExtra("isBlue",isBlue);
+			startActivity(i);
+		}
+		else
+			Toast.makeText(getApplicationContext(), "You failed to enter in a value for one or more fields, please try again.",
+					Toast.LENGTH_LONG).show();
 	}
 
 

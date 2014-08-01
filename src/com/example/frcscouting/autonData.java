@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,15 @@ public class autonData extends Activity {
 			alliance.setText("Red");
 		}
 
-
+	}
+	
+	public void lowClear(View view){
+		RadioGroup rg2 = (RadioGroup)findViewById(R.id.radioGroup2);
+		rg2.clearCheck();
+	}
+	public void highClear(View view){
+		RadioGroup rg1 = (RadioGroup)findViewById(R.id.radioGroup1);
+		rg1.clearCheck();
 	}
 	public void teleopInitiate(View view){
 		String teamNumber = getIntent().getStringExtra("teamNumber");
@@ -41,7 +50,6 @@ public class autonData extends Activity {
 		RadioButton highMiss = (RadioButton)findViewById(R.id.radio2);
 		RadioButton lowHit = (RadioButton)findViewById(R.id.radio3);
 		RadioButton lowMiss = (RadioButton)findViewById(R.id.radio4);
-
 		int highGoalAuton = 17;
 		int lowGoalAuton = 17;
 		if(highHot.isChecked())
@@ -60,7 +68,7 @@ public class autonData extends Activity {
 		else
 			lowGoalAuton = 0;
 
-		if((highGoalAuton != 0 || lowGoalAuton != 0 )|| moves == false){
+		if(((highGoalAuton != 0 || lowGoalAuton != 0 )&& moves == true)|| moves == false && highGoalAuton == 0 && lowGoalAuton == 0){
 			Intent il = new Intent(getApplicationContext(), Teleop.class);
 			il.putExtra("teamNumber",teamNumber);
 			il.putExtra("isRed",isRed);

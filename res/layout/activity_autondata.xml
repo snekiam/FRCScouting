@@ -64,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBox1"
+        android:layout_alignRight="@+id/textView2"
         android:layout_below="@+id/textView1"
         android:baselineAligned="true" >
 
@@ -71,19 +72,29 @@
             android:id="@+id/radio0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hot Goal" />
+            android:onClick="lowClear"
+            android:text="Hot Goal" 
+			
+            />
 
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Normal Goal" />
+            android:onClick="lowClear"
+            android:text="Normal Goal" 
+			
+            />
 
         <RadioButton
             android:id="@+id/radio2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Miss" />
+            android:onClick="lowClear"
+            android:text="Miss" 
+            
+            />
+
     </RadioGroup>
 
     <TextView
@@ -107,13 +118,18 @@
             android:id="@+id/radio3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Goal" />
+            android:text="Goal" 
+            android:onClick="highClear"
+            />
 
         <RadioButton
             android:id="@+id/radio4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Miss" />
+            android:text="Miss" 
+			android:onClick="highClear"
+            />
+
     </RadioGroup>
 
     <Button

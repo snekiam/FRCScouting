@@ -34,26 +34,25 @@ public class teamSelect extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_auton);
 		teamNumberInput = (EditText)findViewById(R.id.editText1);
-
+		teamNumberInput.setText("");
+		InputMethodManager keyboard = (InputMethodManager)
+				getSystemService(Context.INPUT_METHOD_SERVICE);
+		keyboard.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 		selectTeam = (Button)findViewById(R.id.button1);
 		allianceSelect = (RadioGroup) findViewById(R.id.allianceSelect);
 		red = (RadioButton)findViewById(R.id.radioButton1);
 		blue = (RadioButton)findViewById(R.id.radioButton2);
 
 	}
-	protected void onResume(){
-		super.onResume();
-		InputMethodManager lManager = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
-		lManager.showSoftInput(teamNumberInput,InputMethodManager.SHOW_IMPLICIT);
-		teamNumberInput.requestFocusFromTouch();
-		teamNumberInput.requestFocus();
-
-	}
 	public void onTeamSelectButtonClick(View view){
 		isRed = (red.isChecked());
 		isBlue = (blue.isChecked());
 		String teamNumber =  teamNumberInput.getText().toString();
-		if(teamNumber != null && (isRed ==true || isBlue == true)){
+		int teamCheck = (teamNumber).length();
+		if((teamCheck == 1 || teamCheck == 2 || teamCheck == 3 || teamCheck == 4 )&& (isRed == true || isBlue == true)){
+			InputMethodManager keyboard = (InputMethodManager)
+					getSystemService(Context.INPUT_METHOD_SERVICE);
+			keyboard.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 			Intent i = new Intent(getApplicationContext(), autonData.class);
 			i.putExtra("teamNumber",teamNumber);
 			i.putExtra("isRed",isRed);
@@ -61,7 +60,7 @@ public class teamSelect extends Activity {
 			startActivity(i);
 		}
 		else
-			Toast.makeText(getApplicationContext(), "You failed to enter in a value for one or more fields, please try again.",
+			Toast.makeText(getApplicationContext(), "You failed to enter in a valid value for one or more fields, please try again.",
 					Toast.LENGTH_LONG).show();
 	}
 

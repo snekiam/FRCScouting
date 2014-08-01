@@ -1132,9 +1132,9 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
-        public static final int radio0=0x7f050047;
-        public static final int radio1=0x7f050048;
-        public static final int radio2=0x7f050049;
+        public static final int radio0=0x7f050048;
+        public static final int radio1=0x7f050049;
+        public static final int radio2=0x7f05004a;
         public static final int radio3=0x7f05004c;
         public static final int radio4=0x7f05004d;
         public static final int radioButton1=0x7f050040;
@@ -1161,7 +1161,7 @@ containing a value of this type.
         public static final int textView1=0x7f050045;
         public static final int textView10=0x7f050058;
         public static final int textView11=0x7f05005c;
-        public static final int textView2=0x7f05004a;
+        public static final int textView2=0x7f050047;
         public static final int textView3=0x7f050042;
         public static final int textView4=0x7f050043;
         public static final int textView5=0x7f050053;

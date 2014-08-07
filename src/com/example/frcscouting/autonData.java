@@ -1,19 +1,23 @@
 package com.example.frcscouting;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class autonData extends Activity {
-
-
+public class autonData extends Activity { 
 	/** Called when the activity is first created. */
+	String secondBall = null;
+	String thirdBall = null;
 	public void onCreate(Bundle savedInstanceState) {
 		String teamNumber = getIntent().getStringExtra("teamNumber");
 		Boolean isRed = getIntent().getBooleanExtra("isRed", false);
@@ -23,6 +27,7 @@ public class autonData extends Activity {
 		TextView textView = (TextView) findViewById(R.id.textView3);
 		TextView alliance = (TextView) findViewById(R.id.textView4);
 		textView.setText(teamNumber);
+
 		if(isBlue == true && isRed == false){
 			alliance.setText("Blue");
 		}
@@ -39,6 +44,172 @@ public class autonData extends Activity {
 	public void highClear(View view){
 		RadioGroup rg1 = (RadioGroup)findViewById(R.id.radioGroup1);
 		rg1.clearCheck();
+	}
+	public void twoBall(View view1){
+		final CharSequence[] items={"High hot","High","High Miss","Low","Low Miss"};
+    	AlertDialog.Builder secondBallDialog=new AlertDialog.Builder(this);
+    	secondBallDialog.setTitle("Select the valid turnout for the second ball");
+    	secondBallDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			
+			@Override				
+
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+    	secondBallDialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {teleopInitiate(null);
+			}
+		});
+    	
+     	secondBallDialog.setSingleChoiceItems(items,-1, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+				if("High hot".equals(items[which]))
+				{
+					secondBall="High hot";
+				}
+				else if("High".equals(items[which]))
+				{
+					secondBall="High";
+
+				}
+				else if("High Miss".equals(items[which]))
+				{
+					secondBall="High miss";
+
+				}
+				else if("Low".equals(items[which]))
+				{
+					secondBall="low";
+
+				}
+				else if("Low Miss".equals(items[which]))
+				{
+					secondBall="Low miss";
+
+				}
+				
+				
+			}
+		});
+    	secondBallDialog.show();
+	}
+	public void threeBall(View view2){
+		final CharSequence[] items={"High hot","High","High Miss","Low","Low Miss"};
+    	AlertDialog.Builder thirdBallDialog1=new AlertDialog.Builder(this);
+    	thirdBallDialog1.setTitle("Select the valid turnout for the second ball");
+    	thirdBallDialog1.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			
+			@Override				
+
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+    	thirdBallDialog1.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {threeBall2();
+			}
+		});
+    	
+    	thirdBallDialog1.setSingleChoiceItems(items,-1, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+				if("High hot".equals(items[which]))
+				{
+					secondBall="High hot";
+				}
+				else if("High".equals(items[which]))
+				{
+					secondBall="High";
+
+				}
+				else if("High Miss".equals(items[which]))
+				{
+					secondBall="High miss";
+
+				}
+				else if("Low".equals(items[which]))
+				{
+					secondBall="low";
+
+				}
+				else if("Low Miss".equals(items[which]))
+				{
+					secondBall="Low miss";
+
+				}
+				
+				
+			}
+		});
+    	thirdBallDialog1.show();
+
+	}
+	public void threeBall2(){
+		final CharSequence[] items={"High hot","High","High Miss","Low","Low Miss"};
+    	AlertDialog.Builder thirdBallDialog2=new AlertDialog.Builder(this);
+    	thirdBallDialog2.setTitle("Select the valid turnout for the third ball");
+    	thirdBallDialog2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			
+			@Override				
+
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+    	thirdBallDialog2.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {teleopInitiate(null);
+			}
+		});
+    	
+    	thirdBallDialog2.setSingleChoiceItems(items,-1, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+				if("High hot".equals(items[which]))
+				{
+					thirdBall="High hot";
+				}
+				else if("High".equals(items[which]))
+				{
+					thirdBall="High";
+
+				}
+				else if("High Miss".equals(items[which]))
+				{
+					thirdBall="High miss";
+
+				}
+				else if("Low".equals(items[which]))
+				{
+					thirdBall="low";
+
+				}
+				else if("Low Miss".equals(items[which]))
+				{
+					thirdBall="Low miss";
+
+				}
+				
+				
+			}
+		});
+    	thirdBallDialog2.show();
 	}
 	public void teleopInitiate(View view){
 		String teamNumber = getIntent().getStringExtra("teamNumber");
@@ -68,7 +239,7 @@ public class autonData extends Activity {
 		else
 			lowGoalAuton = 0;
 
-		if(((highGoalAuton != 0 || lowGoalAuton != 0 )&& moves == true)|| moves == false && highGoalAuton == 0 && lowGoalAuton == 0){
+		if(((highGoalAuton != 0 || lowGoalAuton != 0 )&& moves == true)|| (moves == false && highGoalAuton == 0 && lowGoalAuton == 0)|| moves == true){
 			Intent il = new Intent(getApplicationContext(), Teleop.class);
 			il.putExtra("teamNumber",teamNumber);
 			il.putExtra("isRed",isRed);
@@ -76,6 +247,8 @@ public class autonData extends Activity {
 			il.putExtra("moves", moves);
 			il.putExtra("highGoalAuton", highGoalAuton);
 			il.putExtra("lowGoalAuton", lowGoalAuton);
+			il.putExtra("secondBall", secondBall);
+			il.putExtra("thirdBall", thirdBall);
 			startActivity(il);}	
 		else{
 			Toast.makeText(getApplicationContext(), "You failed to enter a value under one or more sections! Please check your input and try again.",

@@ -91,6 +91,8 @@ public class Teleop extends Activity {
 		int failedTrusses=trussFail.getValue();
 		int caughtTrusses=trussCatch.getValue();
 		int assists=Assists.getValue();
+		String twoBall = getIntent().getStringExtra("twoBall");
+		String threeBall = getIntent().getStringExtra("threeBall");
 		String teamNumber = getIntent().getStringExtra("teamNumber");
 		boolean isRed = getIntent().getBooleanExtra("isRed", false);
 		boolean isBlue = getIntent().getBooleanExtra("isBlue",false);
@@ -122,7 +124,7 @@ public class Teleop extends Activity {
 		Sheet sheet1 = wb.createSheet("Data");
 
 		Map<String, Object[]> data = new TreeMap<String, Object[]>();
-		data.put("0", new Object[]{teamNumber,alliance,move,highGoalAuton,lowGoalAuton,highGoals,highMisses,lowGoals,lowMisses,trusses,failedTrusses,caughtTrusses,assists,failed});
+		data.put("0", new Object[]{teamNumber,alliance,move,highGoalAuton,twoBall,threeBall,lowGoalAuton,highGoals,highMisses,lowGoals,lowMisses,trusses,failedTrusses,caughtTrusses,assists,failed});
 		int rownum = 0;
 		Set<String> keyset = data.keySet();
 		for (String key : keyset)

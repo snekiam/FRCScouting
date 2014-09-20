@@ -110,11 +110,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_toRightOf="@+id/numberPicker6"
         android:text="Low Goal"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignTop="@+id/textView1"
+        android:layout_alignEnd="@+id/numberPicker7" />
 
     <TextView
         android:id="@+id/textView10"
@@ -177,10 +176,10 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/numberPicker5"
-        android:layout_toRightOf="@+id/numberPicker2"
         android:text="Success"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignBottom="@+id/numberPicker5"
+        android:layout_toStartOf="@+id/checkBox1" />
 
     <NumberPicker
         android:id="@+id/numberPicker6"
@@ -208,5 +207,13 @@
         android:layout_alignLeft="@+id/numberPicker7"
         android:onClick="submitData"
         android:text="Submit" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -14,8 +14,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.bluetooth.BluetoothAdapter;
 
@@ -42,6 +44,7 @@ public class Teleop extends Activity {
 	/** Called when the activity is first created. */
 
 	public void onCreate(Bundle savedInstanceState) {
+
 		setContentView(R.layout.activity_teleop);
 		super.onCreate(savedInstanceState);
 		NumberPicker highGoal = (NumberPicker) findViewById(R.id.numberPicker2);
@@ -52,6 +55,9 @@ public class Teleop extends Activity {
 		NumberPicker trussFail = (NumberPicker) findViewById(R.id.numberPicker6);
 		NumberPicker trussCatch = (NumberPicker) findViewById(R.id.numberPicker7);
 		NumberPicker Assists = (NumberPicker) findViewById(R.id.numberPicker8);
+        TextView teamnumber = ((TextView)findViewById(R.id.textView));
+        String teamNumber = getIntent().getStringExtra("teamNumber");
+        teamnumber.setText(teamNumber);
 		highGoal.setMinValue(0);
 		highGoal.setMaxValue(15);
 		highMiss.setMinValue(0);
@@ -91,9 +97,10 @@ public class Teleop extends Activity {
 		int failedTrusses=trussFail.getValue();
 		int caughtTrusses=trussCatch.getValue();
 		int assists=Assists.getValue();
-		String twoBall = getIntent().getStringExtra("twoBall");
-		String threeBall = getIntent().getStringExtra("threeBall");
-		String teamNumber = getIntent().getStringExtra("teamNumber");
+        String teamNumber = getIntent().getStringExtra("teamNumber");
+        String twoBall = getIntent().getStringExtra("twoBall");
+        String matchnumber = getIntent().getStringExtra("matchnumber");
+        String threeBall = getIntent().getStringExtra("threeBall");
 		boolean isRed = getIntent().getBooleanExtra("isRed", false);
 		boolean isBlue = getIntent().getBooleanExtra("isBlue",false);
 		boolean moves = getIntent().getBooleanExtra("moves", false);
@@ -142,7 +149,7 @@ public class Teleop extends Activity {
 			}
 		}
 		File root = Environment.getExternalStorageDirectory();
-		File file = new File(root, "scouting.xls");
+		File file = new File(root, "scouting_"+matchnumber+"_"+teamNumber+".xls");
 		FileOutputStream os = null;
 		try { 
 

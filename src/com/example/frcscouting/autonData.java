@@ -2,11 +2,13 @@ package com.example.frcscouting;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -241,7 +243,9 @@ public class autonData extends Activity {
 
 		if(((highGoalAuton != 0 || lowGoalAuton != 0 )&& moves == true)|| (moves == false && highGoalAuton == 0 && lowGoalAuton == 0)|| moves == true){
 			Intent il = new Intent(getApplicationContext(), Teleop.class);
-			il.putExtra("teamNumber",teamNumber);
+            String matchnumber = getIntent().getStringExtra("matchnumber");
+            il.putExtra("teamNumber",teamNumber);
+            il.putExtra("matchnumber",matchnumber);
 			il.putExtra("isRed",isRed);
 			il.putExtra("isBlue",isBlue);
 			il.putExtra("moves", moves);

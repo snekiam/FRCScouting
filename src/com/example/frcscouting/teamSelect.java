@@ -29,19 +29,18 @@ public class teamSelect extends Activity {
 	RadioButton blue,red;
 	boolean isRed = false;
 	boolean isBlue = false;
+    String matchnumber = "0";
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_auton);
 		teamNumberInput = (EditText)findViewById(R.id.editText1);
 		teamNumberInput.setText("");
-		InputMethodManager keyboard = (InputMethodManager)
-				getSystemService(Context.INPUT_METHOD_SERVICE);
-		keyboard.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 		selectTeam = (Button)findViewById(R.id.button1);
 		allianceSelect = (RadioGroup) findViewById(R.id.allianceSelect);
 		red = (RadioButton)findViewById(R.id.radioButton1);
 		blue = (RadioButton)findViewById(R.id.radioButton2);
+        matchnumber = getIntent().getStringExtra("matchnumber");
 
 	}
 	public void onTeamSelectButtonClick(View view){
@@ -50,10 +49,8 @@ public class teamSelect extends Activity {
 		String teamNumber =  teamNumberInput.getText().toString();
 		int teamCheck = (teamNumber).length();
 		if((teamCheck == 1 || teamCheck == 2 || teamCheck == 3 || teamCheck == 4 )&& (isRed == true || isBlue == true)){
-			InputMethodManager keyboard = (InputMethodManager)
-					getSystemService(Context.INPUT_METHOD_SERVICE);
-			keyboard.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 			Intent i = new Intent(getApplicationContext(), autonData.class);
+            i.putExtra("matchnumber",matchnumber);
 			i.putExtra("teamNumber",teamNumber);
 			i.putExtra("isRed",isRed);
 			i.putExtra("isBlue",isBlue);
